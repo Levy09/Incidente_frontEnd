@@ -1,6 +1,6 @@
 "use client"
 import { usePathname, useRouter } from 'next/navigation'
-import { HouseSimple } from '@phosphor-icons/react'
+import { HouseSimple , TrafficCone , ArrowRight} from '@phosphor-icons/react'
 
 export default function SideBar() {
     const pathname = usePathname()
@@ -23,7 +23,10 @@ export default function SideBar() {
 
             <div onClick={() => goToPage("/incidentes")} className={pathname === "/incidentes" ? "bg-white text-blue-800 p-1 rounded-md" : "cursor-pointer"}>
                 {/* Aqui você pode adicionar um texto ou qualquer outro conteúdo */}
-                Incidentes
+                
+                <TrafficCone size={32} />
+
+
             </div>
 
             <div onClick={() => {
@@ -33,7 +36,8 @@ export default function SideBar() {
             }}
                 className="cursor-pointer">
                 {/* Aqui você pode adicionar um texto ou qualquer outro conteúdo */}
-                Sair
+                <ArrowRight size={32} />
+
             </div>
 
         </div>
