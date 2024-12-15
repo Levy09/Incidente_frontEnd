@@ -1,6 +1,6 @@
 "use client"
 import { usePathname, useRouter } from 'next/navigation'
-import { HouseSimple , TrafficCone , ArrowRight} from '@phosphor-icons/react'
+import { HouseSimple, TrafficCone, ArrowRight, Gear } from '@phosphor-icons/react'
 
 export default function SideBar() {
     const pathname = usePathname()
@@ -10,36 +10,48 @@ export default function SideBar() {
         router.push(page)
     }
 
-    console.info(pathname)
-
     return (
-        <div className="gap-9 absolute left-0 min-h-screen min-w-18 p-2 flex justify-start items-center bg-blue-800
-         text-white flex-col space-y-2">
-
-            <div onClick={() => goToPage("/dashboard")} className={pathname === "/dashboard" ? "bg-white text-blue-800 p-1 rounded-md" : "cursor-pointer"}>
-                {/* Aqui você pode adicionar um texto ou qualquer outro conteúdo */}
+        <div className="w-16 min-h-screen bg-gradient-to-b from-blue-800 to-blue-600 text-white shadow-xl rounded-xl p-4 flex flex-col items-center space-y-6">
+            
+            {/* Home */}
+            <div
+                onClick={() => goToPage("/dashboard")}
+                className={`cursor-pointer flex flex-col items-center p-3 transition-all duration-200 ease-in-out transform hover:bg-blue-700 rounded-lg hover:scale-105 ${pathname === "/dashboard" ? "bg-blue-700 scale-105" : ""}`}
+            >
                 <HouseSimple size={32} />
+                <span className="text-xs font-semibold mt-2 hidden group-hover:block">Home</span>
             </div>
-
-            <div onClick={() => goToPage("/incidentes")} className={pathname === "/incidentes" ? "bg-white text-blue-800 p-1 rounded-md" : "cursor-pointer"}>
-                {/* Aqui você pode adicionar um texto ou qualquer outro conteúdo */}
-                
+            
+            {/* Incidentes */}
+            <div
+                onClick={() => goToPage("/incidentes")}
+                className={`cursor-pointer flex flex-col items-center p-3 transition-all duration-200 ease-in-out transform hover:bg-blue-700 rounded-lg hover:scale-105 ${pathname === "/incidentes" ? "bg-blue-700 scale-105" : ""}`}
+            >
                 <TrafficCone size={32} />
-
-
+                <span className="text-xs font-semibold mt-2 hidden group-hover:block">Incidentes</span>
             </div>
 
-            <div onClick={() => {
-                if (window.confirm("Tem certeza de que deseja sair?")) {
-                    goToPage("/")
-                }
-            }}
-                className="cursor-pointer">
-                {/* Aqui você pode adicionar um texto ou qualquer outro conteúdo */}
+            {/* Configurações */}
+            <div
+                onClick={() => goToPage("/configuracoes")}
+                className={`cursor-pointer flex flex-col items-center p-3 transition-all duration-200 ease-in-out transform hover:bg-blue-700 rounded-lg hover:scale-105 ${pathname === "/configuracoes" ? "bg-blue-700 scale-105" : ""}`}
+            >
+                <Gear size={32} />
+                <span className="text-xs font-semibold mt-2 hidden group-hover:block">Configurações</span>
+            </div>
+
+            {/* Sair */}
+            <div
+                onClick={() => {
+                    if (window.confirm("Tem certeza de que deseja sair?")) {
+                        goToPage("/")
+                    }
+                }}
+                className="cursor-pointer flex flex-col items-center p-3 transition-all duration-200 ease-in-out transform hover:bg-red-600 rounded-lg hover:scale-105"
+            >
                 <ArrowRight size={32} />
-
+                <span className="text-xs font-semibold mt-2 hidden group-hover:block">Sair</span>
             </div>
-
         </div>
     )
 }
